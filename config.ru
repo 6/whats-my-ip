@@ -1,3 +1,4 @@
 run Proc.new {|env|
-  [200, {"Content-Type" => "text/plain"}, [env["REMOTE_ADDR"]]]
+  ip = env["HTTP_X_FORWARDED_FOR"] || env["REMOTE_ADDR"]
+  [200, {"Content-Type" => "text/plain"}, [ip]]
 }
